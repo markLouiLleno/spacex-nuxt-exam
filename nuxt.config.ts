@@ -3,10 +3,13 @@ import vuetify from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
 	future: { compatibilityVersion: 4 },
 
-	// Modules should appear before their configs
+	// Tell Nuxt your source directory is inside /app
+	srcDir: 'app/',
+
+	// Modules
 	modules: ['@nuxtjs/apollo', ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate'] }]],
 
-	// Apollo module configuration
+	// Apollo config
 	apollo: {
 		autoImports: true,
 		proxyCookies: true,
@@ -17,7 +20,7 @@ export default defineNuxtConfig({
 		},
 	},
 
-	// Vuetify + Vite config
+	// Vuetify + Vite
 	vite: {
 		optimizeDeps: {
 			include: ['graphql-tag'],
@@ -25,12 +28,12 @@ export default defineNuxtConfig({
 		plugins: [vuetify()],
 	},
 
-	// Required for Vuetify
+	// Vuetify transpile
 	build: {
 		transpile: ['vuetify'],
 	},
 
-	// Auto-imports folder
+	// Auto-imports
 	imports: {
 		dirs: ['./stores'],
 	},
