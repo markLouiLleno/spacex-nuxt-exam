@@ -1,4 +1,5 @@
 {
+	"version": "3.0.0",
 	"private": true,
 	"scripts": {
 		"build": "nuxt build",
@@ -11,15 +12,18 @@
 		"lint": "npm run lint:js && npm run lint:style",
 		"lintfix": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue --ignore-path .gitignore . && stylelint --fix **/*.{vue,css,scss} --ignore-path .gitignore"
 	},
-	"lint-staged": {
-		"**/*": "prettier --write --ignore-unknown --ignore-path .prettierignore",
-		"*.{js,cjs,mjs,ts,jsx,tsx,vue}": "eslint --fix",
-		"*.{css,scss,vue}": "stylelint --fix --ignore-path .gitignore"
-	},
 	"config": {
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
+	},
+	"dependencies": {
+		"@apollo/client": "^3.8.8",
+		"@mdi/font": "^7.2.96",
+		"@pinia/nuxt": "^0.5.1",
+		"graphql": "^16.12.0",
+		"sass": "^1.68.0",
+		"vuetify": "^3.3.23"
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^3.8.0",
@@ -38,11 +42,9 @@
 		"stylelint-config-standard-vue": "^1.0.0",
 		"vite-plugin-vuetify": "^2.0.4"
 	},
-	"dependencies": {
-		"@mdi/font": "^7.2.96",
-		"@pinia/nuxt": "^0.5.1",
-		"sass": "^1.68.0",
-		"vuetify": "^3.3.23"
-	},
-	"version": "3.0.0"
+	"lint-staged": {
+		"**/*": "prettier --write --ignore-unknown --ignore-path .prettierignore",
+		"*.{js,cjs,mjs,ts,jsx,tsx,vue}": "eslint --fix",
+		"*.{css,scss,vue}": "stylelint --fix --ignore-path .gitignore"
+	}
 }

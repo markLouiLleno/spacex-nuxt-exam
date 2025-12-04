@@ -1,19 +1,23 @@
 import vuetify from 'vite-plugin-vuetify'
-// https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
 	future: { compatibilityVersion: 4 },
-	build: { transpile: ['vuetify'] },
-	imports: { dirs: ['./stores'] },
 
+	// Modules should appear before their configs
+	modules: ['@nuxtjs/apollo', ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate'] }]],
+
+	// Apollo module configuration
 	apollo: {
 		autoImports: true,
 		proxyCookies: true,
 		clients: {
-			default: { httpEndpoint: 'https://spacex-production.up.railway.app/' },
+			default: {
+				httpEndpoint: 'https://spacex-production.up.railway.app/',
+			},
 		},
 	},
 
+	// Vuetify + Vite config
 	vite: {
 		optimizeDeps: {
 			include: ['graphql-tag'],
@@ -21,6 +25,15 @@ export default defineNuxtConfig({
 		plugins: [vuetify()],
 	},
 
-	modules: ['@nuxtjs/apollo', ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate'] }]],
+	// Required for Vuetify
+	build: {
+		transpile: ['vuetify'],
+	},
+
+	// Auto-imports folder
+	imports: {
+		dirs: ['./stores'],
+	},
+
 	compatibilityDate: '2024-11-11',
 })
