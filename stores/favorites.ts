@@ -1,30 +1,25 @@
-// ~/stores/favorites.ts
+// app/stores/favorites.ts
 import { defineStore } from 'pinia'
 
-export const useFavoritesStore = defineStore('favorites', {
+export const useFavorites = defineStore('favorites', {
 	state: () => ({
 		items: [] as any[],
 	}),
 
 	getters: {
-		isFavorite: (state) => (id: string) => state.items.some((l) => l.id === id),
+		isFavorite: (state) => (id: string) => {
+			return state.items.some((item) => item.id === id)
+		},
 	},
 
 	actions: {
 		toggleFavorite(launch: any) {
-			const exists = this.items.find((l) => l.id === launch.id)
-
+			const exists = this.items.find((item) => item.id === launch.id)
 			if (exists) {
-				this.items = this.items.filter((l) => l.id !== launch.id)
+				this.items = this.items.filter((item) => item.id !== launch.id)
 			} else {
-				// Save FULL SpaceX API object (includes images)
-				this.items.push(JSON.parse(JSON.stringify(launch)))
+				this.items.push(launch)
 			}
 		},
 	},
-
-	persist: {
-		key: 'favorites',
-		paths: ['items'],
-	} as any,
 })
